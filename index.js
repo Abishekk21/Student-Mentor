@@ -4,14 +4,14 @@ const mongoose = require('mongoose');
 const dotenv=require('dotenv')
 dotenv.config();
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 // Add body-parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
 // Connect to MongoDB Atlas
-mongoose.connect(`mongodb+srv://Abishek:shps1YlOksGX9utB@cluster0.4exrkqj.mongodb.net/test`, {
+mongoose.connect(`mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@${process.env.CLUSTER}/${process.env.DBNAME}?retryWrites=true&w=majority`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
